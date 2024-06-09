@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, TextInput } from "react-native";
+import { NavContainer } from "./src/navigators";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => {
+  let BText = Text as any;
+  let BTextInput = TextInput as any;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (BText?.defaultProps) {
+    BText.defaultProps.allowFontScaling = false;
+  } else {
+    BText.defaultProps = {};
+    BText.defaultProps.allowFontScaling = false;
+  }
+
+  // Override Text scaling in input fields
+  if (BTextInput?.defaultProps) {
+    BTextInput.defaultProps.allowFontScaling = false;
+  } else {
+    BTextInput.defaultProps = {};
+    BTextInput.defaultProps.allowFontScaling = false;
+  }
+
+  return <NavContainer />;
+};
+
+export default App;
